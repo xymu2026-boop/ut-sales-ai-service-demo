@@ -1089,27 +1089,31 @@ button { font: inherit; }
 }
 
 .profile-rich {
+  min-width: 0;
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 9px;
-  align-items: start;
+  grid-template-columns: 1fr;
+  gap: 8px;
 }
 
 .profile-person {
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
-  background: #F8FAFC;
-  padding: 8px;
   display: grid;
-  align-content: start;
-  gap: 7px;
-  align-self: start;
+  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-areas:
+    "photo name"
+    "photo wechat"
+    "roles roles";
+  gap: 5px 9px;
+  min-width: 0;
+  padding: 0 0 8px;
+  border-bottom: 1px solid #EEF1F5;
+  background: transparent;
 }
 
 .profile-photo {
-  width: 58px;
-  height: 58px;
-  border-radius: 12px;
+  grid-area: photo;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
   overflow: hidden;
   background: #E5E7EB;
   box-shadow: 0 1px 2px rgba(15,23,42,.12);
@@ -1123,6 +1127,7 @@ button { font: inherit; }
 }
 
 .profile-name {
+  grid-area: name;
   min-width: 0;
   display: grid;
   gap: 2px;
@@ -1146,10 +1151,11 @@ button { font: inherit; }
 }
 
 .profile-wechat {
-  padding: 5px 7px;
-  border-radius: 7px;
-  background: #fff;
-  border: 1px solid #EEF1F5;
+  grid-area: wechat;
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  border: 0;
   font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
@@ -1157,18 +1163,20 @@ button { font: inherit; }
 }
 
 .role-tabs {
+  grid-area: roles;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
+  padding-top: 2px;
 }
 
 .role-tab {
-  height: 24px;
+  height: 22px;
   border: 1px solid #D1D5DB;
   border-radius: 999px;
   background: #fff;
   color: #6B7280;
-  padding: 0 8px;
+  padding: 0 7px;
   font-size: 11px;
   font-weight: 900;
   cursor: pointer;
@@ -1183,25 +1191,25 @@ button { font: inherit; }
 .profile-detail {
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 7px;
+  grid-template-columns: 1fr;
+  gap: 6px;
   align-items: start;
 }
 
 .role-detail {
-  grid-column: 1 / -1;
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
-  background: #fff;
-  padding: 7px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
   display: grid;
-  gap: 5px;
+  gap: 4px;
 }
 
 .role-detail-title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 8px;
   color: #111827;
   font-size: 12px;
@@ -1217,16 +1225,20 @@ button { font: inherit; }
 
 .profile-section {
   min-width: 0;
-  border: 1px solid #E5E7EB;
-  border-radius: 8px;
-  background: #fff;
-  padding: 7px;
-  display: grid;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 6px;
-  align-self: start;
 }
 
 .profile-section-title {
+  flex: 0 0 auto;
+  min-width: 66px;
+  padding-top: 3px;
   color: #111827;
   font-size: 11px;
   line-height: 1.25;
@@ -1234,27 +1246,51 @@ button { font: inherit; }
 }
 
 .business-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px;
-  align-items: start;
+  min-width: 0;
+  flex: 1 1 220px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 8px;
 }
 
 .profile-section .field-row {
-  grid-template-columns: 58px minmax(0, 1fr);
-  padding: 5px 7px;
+  min-width: 0;
+  flex: 1 1 180px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  line-height: 1.3;
+}
+
+.profile-section .field-row label {
+  flex: 0 0 auto;
+}
+
+.profile-section .field-row b {
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.profile-section .chips {
+  min-width: 0;
+  flex: 1 1 100%;
+  padding-top: 1px;
 }
 
 .business-tile {
   min-width: 0;
-  min-height: 34px;
-  padding: 5px 7px;
-  border: 1px solid #EDF0F4;
-  border-radius: 6px;
-  background: var(--surface-soft);
-  display: grid;
-  grid-template-columns: 42px minmax(0, 1fr);
-  gap: 6px;
+  flex: 1 1 120px;
+  padding: 3px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  display: flex;
+  gap: 5px;
   align-items: center;
   color: #111827;
   font-size: 12px;
@@ -1262,6 +1298,7 @@ button { font: inherit; }
 }
 
 .business-tile label {
+  flex: 0 0 auto;
   color: #6B7280;
   font-weight: 800;
   white-space: nowrap;
@@ -1271,9 +1308,9 @@ button { font: inherit; }
   min-width: 0;
   color: #111827;
   font-weight: 850;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  display: block;
+  white-space: normal;
+  overflow-wrap: anywhere;
   overflow: hidden;
 }
 
