@@ -100,6 +100,7 @@
       count: '5 人',
       statusText: '销售会话分析中',
       footer: '本页重点：AI 不替销售直接开口，而是把客户需求、价格异议、竞品比较和下一步动作沉淀到 CRM / OA，给销售可确认发送的建议。',
+      contextNote: '销售过程里，客户需求、价格异议、试菜时间和报价测算常散落在多轮聊天中，销售容易漏记关键承诺。AI 会提取采购信号和下一步动作，并自动同步到 CRM 跟进。',
       messages: [
         {
           role: 'sales',
@@ -266,6 +267,7 @@
       count: '9 人',
       statusText: '交付流程监听中',
       footer: '本页重点：AI 把发货、施工环境、安装、培训和回访串成一个 OA 交付流程，减少交付人员漏跟。',
+      contextNote: '成交后的交付群往往跨销售、交付、工程师和培训老师多角色协同，物流、安装条件、培训安排任何一步漏跟，都会影响客户开业节奏。AI 会抽取关键节点并提前生成 OA / 工单提醒。',
       messages: [
         {
           role: 'delivery',
@@ -446,6 +448,7 @@
       count: '11 人',
       statusText: '保内售后群监听中',
       footer: '本页重点：售后不需要人工逐个翻群，AI 从大量未读群中优先浮现故障消息，并预创建保内维修工单。',
+      contextNote: '每个售后可能要同时盯几十到几百个服务群，报修、配件和培训消息很容易被淹没。AI 会把关键问题自动提取出来，并及时提醒负责人处理。',
       monitor: {
         total: 326,
         unread: 84,
@@ -603,6 +606,7 @@
       count: '7 人',
       statusText: '过保售后群监听中',
       footer: '本页重点：过保客户常涉及费用、配件和质保争议，AI 先核验状态，再辅助售后给出可确认发送的服务方案。',
+      contextNote: '过保客户常把配件购买、上门收费和质保争议混在一段群聊里，如果直接回复容易引发投诉。AI 会先核验质保状态、配件型号和费用边界，再提醒售后给出可确认方案。',
       monitor: {
         total: 412,
         unread: 137,
@@ -879,6 +883,12 @@
 
             <div class="ai-content">
               <div class="ai-main">
+                ${currentScene.contextNote ? `
+                  <div class="ai-context-note">
+                    <i data-lucide="bell-ring"></i>
+                    <span>${escapeHtml(currentScene.contextNote)}</span>
+                  </div>
+                ` : ''}
                 <div class="connector-flow" id="connectorFlow"></div>
                 <div class="insight-grid">
                   ${insightDefs.map(renderInsightCard).join('')}

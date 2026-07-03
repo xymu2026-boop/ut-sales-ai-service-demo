@@ -795,6 +795,39 @@
       gap: 10px;
     }
 
+    .ai-context-note {
+      grid-column: 1 / -1;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 9px;
+      align-items: center;
+      padding: 11px 12px;
+      border: 2px solid #F59E0B;
+      border-left: 6px solid #EA580C;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #FEF3C7 0%, #FFF7ED 100%);
+      color: #7C2D12;
+      box-shadow: 0 8px 18px rgba(245, 158, 11, .16);
+    }
+
+    .ai-context-note i {
+      width: 34px;
+      height: 34px;
+      padding: 8px;
+      border-radius: 8px;
+      background: #FFEDD5;
+      color: #EA580C;
+      box-shadow: inset 0 0 0 1px #FDBA74;
+    }
+
+    .ai-context-note span {
+      min-width: 0;
+      font-size: 12px;
+      line-height: 1.5;
+      font-weight: 900;
+    }
+
     .ai-card {
       min-width: 0;
       border: 1px solid var(--border);
@@ -1561,6 +1594,11 @@
 
         <div class="ai-content">
           <div class="ai-main-grid">
+            <div class="ai-context-note">
+              <i data-lucide="bell-ring"></i>
+              <span>售前接待和试菜群里，客户时间、展厅、菜品、口味评价和自带食材常散在聊天中，销售/接待容易漏准备。AI 会提取试菜预约、备料清单和客户偏好，并提前提醒负责人。</span>
+            </div>
+
             <article class="ai-card" id="card-install" style="--card-color:#2563EB">
               <div class="card-head">
                 <div class="card-title"><i data-lucide="calendar-clock"></i><span>安装预约</span></div>
