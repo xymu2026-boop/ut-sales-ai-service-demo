@@ -12,7 +12,8 @@
     { id: 'delivery', phase: '阶段二', name: '成交交付流程', href: sceneHref('../scene-14-delivery-install-training/index.html'), color: '#2563EB', icon: 'truck' },
     { id: 'warranty', phase: '阶段一', name: '保内服务群', href: sceneHref('../scene-15-warranty-service/index.html'), color: '#10B981', icon: 'shield-check' },
     { id: 'outWarranty', phase: '阶段二', name: '过保服务闭环', href: sceneHref('../scene-16-out-of-warranty-service/index.html'), color: '#F59E0B', icon: 'radar' },
-    { id: 'sales', phase: '阶段三', name: '销售 AI 目标能力', href: sceneHref('../scene-17-sales-process/index.html'), color: '#EC4899', icon: 'line-chart' }
+    { id: 'sales', phase: '阶段三', name: '销售 AI 目标能力', href: sceneHref('../scene-17-sales-process/index.html'), color: '#EC4899', icon: 'line-chart' },
+    { id: 'proposal', phase: '方案', name: '8 页融合版 PPT', href: sceneHref('../scene-18-ai-proposal/index.html'), color: '#0F8F83', icon: 'presentation' }
   ];
 
   const roleMeta = {

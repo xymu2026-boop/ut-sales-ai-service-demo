@@ -252,7 +252,7 @@
         <span class="current-scene-icon"><i data-lucide="message-square-text"></i></span>
         <span class="current-scene-copy">
           <b><span class="current-phase" id="currentScenePhase">阶段一</span><span id="currentSceneTitle">服务场景总入口</span></b>
-          <span id="currentSceneDesc">通过下方业务阶段导航切换五个 Demo 场景</span>
+          <span id="currentSceneDesc">通过下方导航切换五个业务场景与一份融合方案</span>
         </span>
       </div>
       <div class="nav-meta">
@@ -317,6 +317,15 @@
         icon: 'line-chart',
         url: '../scene-17-sales-process/index.html?embed=1'
       },
+      {
+        id: 'proposal',
+        phase: '方案',
+        title: '方案：客户全生命周期 AI',
+        desc: '8 页融合版领导汇报方案',
+        color: '#0F8F83',
+        icon: 'presentation',
+        url: '../scene-18-ai-proposal/index.html?embed=1'
+      },
     ];
 
     const frame = document.getElementById('sceneFrame');
@@ -348,6 +357,7 @@
       if (url.includes('scene-15-warranty-service')) return scenes[2];
       if (url.includes('scene-16-out-of-warranty-service')) return scenes[3];
       if (url.includes('scene-17-sales-process')) return scenes[4];
+      if (url.includes('scene-18-ai-proposal')) return scenes[5];
       return null;
     }
 

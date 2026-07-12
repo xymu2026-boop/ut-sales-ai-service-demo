@@ -1,0 +1,2029 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>优特客户全生命周期 AI 运营平台 · 融合汇报版</title>
+  <style>
+    @page { size: 13.333in 7.5in; margin: 0; }
+    * { box-sizing: border-box; }
+
+    :root {
+      --ink: #111827;
+      --muted: #536278;
+      --soft: #8491a7;
+      --blue: #2563eb;
+      --blue2: #4f63f6;
+      --green: #10b981;
+      --teal: #0f8f83;
+      --orange: #f97316;
+      --amber: #f59e0b;
+      --violet: #7c3aed;
+      --red: #ef4444;
+      --line: rgba(150, 174, 208, .42);
+      --card: rgba(255, 255, 255, .88);
+      --shadow: 0 18px 44px rgba(24, 50, 88, .10);
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: #dfe8f5;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .deck {
+      width: 1366px;
+      margin: 0 auto;
+      background: #e8f0fb;
+    }
+
+    .slide {
+      position: relative;
+      width: 1366px;
+      height: 768px;
+      padding: 34px 58px 34px;
+      overflow: hidden;
+      page-break-after: always;
+      background:
+        linear-gradient(rgba(37, 99, 235, .04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+        linear-gradient(135deg, #f4f8ff 0%, #edf5ff 100%);
+      background-size: 24px 24px, 24px 24px, auto;
+    }
+
+    .slide:last-child { page-break-after: auto; }
+    .slide > * { position: relative; z-index: 1; }
+
+    .slide::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 12px;
+      content: "";
+      background: var(--theme, var(--blue));
+    }
+
+    .slide.s1 { --theme: #2563eb; background:
+      linear-gradient(rgba(37, 99, 235, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+      linear-gradient(135deg, #f4f8ff 0%, #eaf7f5 100%); background-size: 24px 24px, 24px 24px, auto; }
+    .slide.s2 { --theme: #10b981; background:
+      linear-gradient(rgba(16, 185, 129, .045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+      linear-gradient(135deg, #f1fbf6 0%, #eef5ff 100%); background-size: 24px 24px, 24px 24px, auto; }
+    .slide.s3 { --theme: #f97316; background:
+      linear-gradient(rgba(249, 115, 22, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+      linear-gradient(135deg, #fff8f1 0%, #edf5ff 100%); background-size: 24px 24px, 24px 24px, auto; }
+    .slide.s4 { --theme: #7c3aed; background:
+      linear-gradient(rgba(124, 58, 237, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+      linear-gradient(135deg, #f8f4ff 0%, #eef8f4 100%); background-size: 24px 24px, 24px 24px, auto; }
+    .slide.s5 { --theme: #0f8f83; background:
+      linear-gradient(rgba(15, 143, 131, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+      linear-gradient(135deg, #eefbf8 0%, #f5f7ff 100%); background-size: 24px 24px, 24px 24px, auto; }
+    .slide.s6 { --theme: #111827; background:
+      linear-gradient(rgba(17, 24, 39, .035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+      linear-gradient(135deg, #f4f7ff 0%, #edf6f4 100%); background-size: 24px 24px, 24px 24px, auto; }
+    .slide.s7 { --theme: #0f8f83; background:
+      linear-gradient(rgba(15, 143, 131, .04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+      linear-gradient(135deg, #eefbf8 0%, #f5f7ff 100%); background-size: 24px 24px, 24px 24px, auto; }
+    .slide.s8 { --theme: #111827; background:
+      linear-gradient(rgba(17, 24, 39, .035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, .035) 1px, transparent 1px),
+      linear-gradient(135deg, #f4f7ff 0%, #edf6f4 100%); background-size: 24px 24px, 24px 24px, auto; }
+
+    .slide.dark-slide {
+      background:
+        linear-gradient(rgba(255, 255, 255, .05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px),
+        radial-gradient(circle at 18% 12%, rgba(37, 99, 235, .34), transparent 30%),
+        radial-gradient(circle at 86% 18%, rgba(16, 185, 129, .24), transparent 28%),
+        linear-gradient(135deg, #0b1225 0%, #111827 52%, #162033 100%);
+      background-size: 24px 24px, 24px 24px, auto, auto, auto;
+      color: #fff;
+    }
+
+    .dark-slide h1,
+    .dark-slide h2,
+    .dark-slide h3 { color: #fff; }
+
+    .dark-slide .lead {
+      color: rgba(226, 232, 240, .86);
+    }
+
+    .dark-slide .deck-tag,
+    .dark-slide .headline {
+      border-color: rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .10);
+      color: rgba(255, 255, 255, .82);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, .16);
+    }
+
+    .dark-slide .headline span {
+      color: #fff;
+    }
+
+    .dark-slide .page-id {
+      color: rgba(191, 219, 254, .96);
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .page-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--theme, var(--blue));
+      font-size: 15px;
+      font-weight: 950;
+    }
+
+    .page-id b {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--theme, var(--blue));
+      font-size: 13px;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, .22);
+    }
+
+    .deck-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 5px 12px;
+      border: 1px solid rgba(150, 174, 208, .55);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .72);
+      color: #334155;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .headline {
+      display: grid;
+      grid-template-columns: 138px 1fr;
+      align-items: center;
+      max-width: 1060px;
+      min-height: 44px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(150, 174, 208, .44);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .82);
+      box-shadow: 0 10px 28px rgba(24, 50, 88, .07);
+    }
+
+    .headline b {
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--theme, var(--blue)), #10b981);
+      font-size: 14px;
+      font-weight: 950;
+    }
+
+    .headline span {
+      padding: 9px 16px;
+      color: #0f172a;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1, h2 {
+      max-width: 1120px;
+      color: #111827;
+      font-size: 37px;
+      line-height: 1.14;
+      letter-spacing: 0;
+      font-weight: 950;
+    }
+
+    .accent {
+      color: transparent;
+      background: linear-gradient(135deg, #2563eb, #0f8f83);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hot {
+      color: transparent;
+      background: linear-gradient(135deg, #ef4444, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .lead {
+      max-width: 1040px;
+      margin-top: 8px;
+      color: #475569;
+      font-size: 16px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .panel.pad { padding: 20px; }
+
+    .section-kicker {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 5px 11px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--theme, var(--blue));
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .04em;
+      white-space: nowrap;
+    }
+
+    .value-footer {
+      position: absolute;
+      left: 58px;
+      right: 58px;
+      bottom: 32px;
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 16px;
+      align-items: center;
+      min-height: 58px;
+      padding: 11px 18px;
+      border: 1px solid rgba(150, 174, 208, .42);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 12px 30px rgba(24, 50, 88, .07);
+      color: #475569;
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .value-footer b {
+      color: var(--theme, var(--blue));
+      font-size: 14px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .value-footer.dark {
+      border-color: rgba(150, 174, 208, .36);
+      background: linear-gradient(135deg, #f8fbff, #ecfdf5);
+      color: #475569;
+    }
+
+    .value-footer.dark b { color: var(--theme, var(--blue)); }
+
+    .opening-layout {
+      display: grid;
+      grid-template-columns: 1.04fr .96fr;
+      gap: 22px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+
+    .opening-main {
+      min-height: 356px;
+      padding: 24px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(37, 99, 235, .14), transparent 32%),
+        radial-gradient(circle at 86% 10%, rgba(16, 185, 129, .16), transparent 34%),
+        rgba(255, 255, 255, .90);
+    }
+
+    .opening-main h3 {
+      margin-top: 15px;
+      color: #0f172a;
+      font-size: 30px;
+      line-height: 1.22;
+      font-weight: 950;
+    }
+
+    .opening-main p {
+      margin-top: 10px;
+      color: #536278;
+      font-size: 16px;
+      line-height: 1.62;
+      font-weight: 680;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .capability-card {
+      min-height: 66px;
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .84);
+    }
+
+    .capability-card b {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--cap-color, var(--blue));
+      font-size: 14px;
+      font-weight: 950;
+    }
+
+    .capability-card:nth-child(1) { --cap-color: #2563eb; }
+    .capability-card:nth-child(2) { --cap-color: #10b981; }
+    .capability-card:nth-child(3) { --cap-color: #f97316; }
+    .capability-card:nth-child(4) { --cap-color: #7c3aed; }
+
+    .capability-card span {
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 850;
+    }
+
+    .opening-path {
+      display: grid;
+      gap: 13px;
+    }
+
+    .path-card {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 14px;
+      align-items: center;
+      min-height: 104px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .90);
+      box-shadow: 0 12px 28px rgba(24, 50, 88, .07);
+    }
+
+    .path-card b {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--path-color, var(--blue));
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .path-card:nth-child(1) { --path-color: #2563eb; }
+    .path-card:nth-child(2) { --path-color: #10b981; }
+    .path-card:nth-child(3) { --path-color: #7c3aed; }
+
+    .path-card h3 {
+      color: #111827;
+      font-size: 21px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .path-card p {
+      margin-top: 6px;
+      color: #5b677a;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .pain-layout {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 22px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .chat-stack {
+      min-height: 386px;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .09);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .18);
+    }
+
+    .chat-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      color: rgba(226, 232, 240, .84);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .chat-title b {
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .chat-bubble {
+      position: relative;
+      margin-top: 12px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .92);
+      color: #0f172a;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, .18);
+    }
+
+    .chat-bubble:nth-child(3) { margin-left: 42px; }
+    .chat-bubble:nth-child(4) { margin-right: 36px; }
+    .chat-bubble:nth-child(5) { margin-left: 68px; }
+
+    .chat-bubble span {
+      display: block;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .chat-bubble b {
+      display: block;
+      margin-top: 5px;
+      font-size: 15px;
+      line-height: 1.42;
+      font-weight: 900;
+    }
+
+    .risk-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .risk-pill {
+      padding: 10px;
+      border: 1px solid rgba(248, 113, 113, .34);
+      border-radius: 8px;
+      background: rgba(127, 29, 29, .24);
+      color: #fecaca;
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .pain-card {
+      min-height: 150px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .10);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .14);
+    }
+
+    .pain-card.wide {
+      grid-column: 1 / -1;
+      min-height: 118px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .pain-card .badge {
+      display: inline-grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #2563eb, #10b981);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 950;
+    }
+
+    .pain-card h3 {
+      margin-top: 12px;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .pain-card p {
+      margin-top: 8px;
+      color: rgba(226, 232, 240, .80);
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .loop-step {
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .10);
+    }
+
+    .loop-step b {
+      display: block;
+      color: #bfdbfe;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .loop-step span {
+      display: block;
+      margin-top: 6px;
+      color: #fff;
+      font-size: 17px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .goal-layout {
+      display: grid;
+      grid-template-columns: .74fr 1.26fr;
+      gap: 22px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .goal-card {
+      min-height: 348px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(37, 99, 235, .16), transparent 30%),
+        rgba(255, 255, 255, .86);
+    }
+
+    .goal-card h3 {
+      margin-top: 16px;
+      color: #0f172a;
+      font-size: 28px;
+      line-height: 1.22;
+      font-weight: 950;
+    }
+
+    .goal-card p {
+      margin-top: 10px;
+      color: #536278;
+      font-size: 16px;
+      line-height: 1.6;
+      font-weight: 650;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .metric {
+      padding: 14px;
+      border: 1px solid rgba(150, 174, 208, .48);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .metric b {
+      display: block;
+      color: var(--theme, var(--blue));
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: 7px;
+      color: #64748b;
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .stage-map {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stage-card {
+      position: relative;
+      min-height: 348px;
+      padding: 19px 18px;
+      border: 1px solid rgba(150, 174, 208, .48);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .stage-card::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      height: 7px;
+      content: "";
+      background: linear-gradient(90deg, var(--stage-color, var(--blue)), #10b981);
+    }
+
+    .stage-card:nth-child(1) { --stage-color: #2563eb; }
+    .stage-card:nth-child(2) { --stage-color: #10b981; }
+    .stage-card:nth-child(3) { --stage-color: #7c3aed; }
+
+    .stage-no {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 5px 11px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--stage-color, var(--blue));
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .stage-card h3 {
+      margin-top: 14px;
+      color: #111827;
+      font-size: 23px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .stage-card .stage-summary {
+      margin-top: 9px;
+      color: #536278;
+      font-size: 13px;
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .stage-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .stage-list div {
+      min-height: 36px;
+      padding: 8px 10px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .76);
+      color: #334155;
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 820;
+    }
+
+    .strategy-note {
+      margin-top: 16px;
+      padding: 15px;
+      border: 1px solid rgba(37, 99, 235, .18);
+      border-radius: 8px;
+      background: #eff6ff;
+      color: #1e40af;
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 850;
+    }
+
+    .habit-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 22px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .habit-center {
+      min-height: 386px;
+      padding: 24px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(16, 185, 129, .22), transparent 42%),
+        rgba(255, 255, 255, .84);
+    }
+
+    .hub {
+      width: 260px;
+      height: 260px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 22%, #ffffff 0%, #d8ecff 15%, #4f63f6 48%, #0f8f83 100%);
+      box-shadow: 0 0 0 18px rgba(37, 99, 235, .08), 0 0 0 42px rgba(16, 185, 129, .06), 0 22px 64px rgba(37, 99, 235, .24);
+      color: #fff;
+    }
+
+    .hub b {
+      display: block;
+      font-size: 30px;
+      line-height: 1.15;
+      font-weight: 950;
+    }
+
+    .hub span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255, 255, 255, .86);
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .habit-steps {
+      display: grid;
+      gap: 12px;
+    }
+
+    .habit-step {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 14px;
+      align-items: center;
+      min-height: 86px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 12px 28px rgba(24, 50, 88, .07);
+    }
+
+    .habit-step b:first-child {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--step-color, var(--blue));
+      font-size: 18px;
+      font-weight: 950;
+    }
+
+    .habit-step:nth-child(1) { --step-color: #2563eb; }
+    .habit-step:nth-child(2) { --step-color: #10b981; }
+    .habit-step:nth-child(3) { --step-color: #f97316; }
+    .habit-step:nth-child(4) { --step-color: #7c3aed; }
+
+    .habit-step h3 {
+      color: #111827;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .habit-step p {
+      margin-top: 5px;
+      color: #5b677a;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .breakthrough-layout {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 22px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .chain-card {
+      min-height: 390px;
+      padding: 22px;
+      display: grid;
+      align-content: center;
+      gap: 13px;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(16, 185, 129, .18), transparent 34%),
+        rgba(255, 255, 255, .88);
+    }
+
+    .chain-step {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .88);
+    }
+
+    .chain-step b {
+      display: grid;
+      width: 56px;
+      height: 56px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--chain-color, var(--blue));
+      font-size: 20px;
+      font-weight: 950;
+    }
+
+    .chain-step:nth-child(1) { --chain-color: #2563eb; }
+    .chain-step:nth-child(2) { --chain-color: #10b981; }
+    .chain-step:nth-child(3) { --chain-color: #f97316; }
+
+    .chain-step h3 {
+      color: #111827;
+      font-size: 21px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .chain-step p {
+      margin-top: 5px;
+      color: #5b677a;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .reason-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .reason-card {
+      min-height: 128px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 12px 28px rgba(24, 50, 88, .07);
+    }
+
+    .reason-card b {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--reason-color, var(--blue));
+      font-size: 15px;
+      font-weight: 950;
+    }
+
+    .reason-card:nth-child(1) { --reason-color: #2563eb; }
+    .reason-card:nth-child(2) { --reason-color: #10b981; }
+    .reason-card:nth-child(3) { --reason-color: #f97316; }
+    .reason-card:nth-child(4) { --reason-color: #7c3aed; }
+
+    .reason-card h3 {
+      margin-top: 11px;
+      color: #111827;
+      font-size: 20px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .reason-card p {
+      margin-top: 6px;
+      color: #5b677a;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .demo-layout {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 22px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .screenshot-card {
+      overflow: hidden;
+      min-height: 390px;
+      background: #fff;
+    }
+
+    .shot-head {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(248, 251, 255, .94);
+      color: #334155;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .shot-window {
+      height: 348px;
+      overflow: hidden;
+      background: #eef3f8;
+    }
+
+    .shot-window img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+    }
+
+    .explain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .explain-card {
+      min-height: 130px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 12px 28px rgba(24, 50, 88, .07);
+    }
+
+    .explain-card .num {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--theme, var(--blue));
+      font-size: 16px;
+      font-weight: 950;
+      margin-bottom: 12px;
+    }
+
+    .explain-card h3 {
+      color: #111827;
+      font-size: 19px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .explain-card p {
+      margin-top: 7px;
+      color: #5b677a;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .scope-layout {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 22px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .scope-card {
+      min-height: 390px;
+      padding: 22px;
+    }
+
+    .scope-card h3 {
+      font-size: 28px;
+      line-height: 1.2;
+      font-weight: 950;
+    }
+
+    .scope-card p {
+      margin-top: 10px;
+      color: #536278;
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+
+    .scope-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .scope-tag {
+      display: inline-flex;
+      min-height: 30px;
+      align-items: center;
+      padding: 6px 10px;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      color: #1d4ed8;
+      background: #eff6ff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .scope-tag.green { color: #047857; border-color: #bbf7d0; background: #ecfdf5; }
+    .scope-tag.orange { color: #a16207; border-color: #fde68a; background: #fffbeb; }
+    .scope-tag.red { color: #be123c; border-color: #fecdd3; background: #fff1f2; }
+
+    .dual-stack {
+      display: grid;
+      gap: 14px;
+    }
+
+    .dual-card {
+      display: grid;
+      grid-template-columns: 126px 1fr;
+      gap: 14px;
+      min-height: 118px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 12px 28px rgba(24, 50, 88, .07);
+    }
+
+    .dual-card label {
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--dual-color, var(--blue));
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .dual-card:nth-child(1) { --dual-color: #2563eb; }
+    .dual-card:nth-child(2) { --dual-color: #10b981; }
+
+    .dual-card h3 {
+      color: #111827;
+      font-size: 21px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .dual-card p {
+      margin-top: 6px;
+      color: #5b677a;
+      font-size: 14px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .knowledge-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 22px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .knowledge-flow {
+      padding: 20px;
+      min-height: 390px;
+    }
+
+    .quote-box {
+      padding: 16px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #101828, #17113f);
+      color: #fff;
+    }
+
+    .quote-box span {
+      display: block;
+      color: rgba(255, 255, 255, .68);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .quote-box b {
+      display: block;
+      margin-top: 8px;
+      font-size: 18px;
+      line-height: 1.4;
+      font-weight: 950;
+    }
+
+    .flow-steps {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: center;
+      min-height: 48px;
+      padding: 8px 10px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .8);
+      color: #334155;
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .flow-step b {
+      display: grid;
+      width: 30px;
+      height: 30px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--step-color, var(--theme));
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .flow-step:nth-child(1) { --step-color: #2563eb; }
+    .flow-step:nth-child(2) { --step-color: #10b981; }
+    .flow-step:nth-child(3) { --step-color: #f97316; }
+    .flow-step:nth-child(4) { --step-color: #7c3aed; }
+
+    .knowledge-output {
+      min-height: 390px;
+      padding: 20px;
+    }
+
+    .knowledge-output h3 {
+      color: #111827;
+      font-size: 26px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .knowledge-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .knowledge-item {
+      min-height: 100px;
+      padding: 15px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .82);
+    }
+
+    .knowledge-item b {
+      display: block;
+      color: #111827;
+      font-size: 18px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .knowledge-item span {
+      display: block;
+      margin-top: 6px;
+      color: #5b677a;
+      font-size: 13px;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .road {
+      min-height: 404px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-top: 7px solid var(--road-color, var(--blue));
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: var(--shadow);
+    }
+
+    .road:nth-child(1) { --road-color: #2563eb; }
+    .road:nth-child(2) { --road-color: #10b981; }
+    .road:nth-child(3) { --road-color: #7c3aed; }
+
+    .road-label {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: var(--road-color, var(--blue));
+      color: #fff;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .road h3 {
+      margin-top: 16px;
+      color: #111827;
+      font-size: 27px;
+      line-height: 1.22;
+      font-weight: 950;
+    }
+
+    .road .goal {
+      margin-top: 10px;
+      color: #536278;
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .road-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .road-list div {
+      min-height: 38px;
+      padding: 9px 10px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .76);
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 820;
+    }
+
+    .acceptance {
+      margin-top: 14px;
+      padding: 12px;
+      border: 1px solid rgba(16, 185, 129, .30);
+      border-radius: 8px;
+      background: #ecfdf5;
+      color: #047857;
+      font-size: 13px;
+      line-height: 1.42;
+      font-weight: 850;
+    }
+
+    .road:nth-child(2) .acceptance {
+      border-color: rgba(245, 158, 11, .36);
+      background: #fffbeb;
+      color: #92400e;
+    }
+
+    .road:nth-child(3) .acceptance {
+      border-color: rgba(124, 58, 237, .28);
+      background: #f5f3ff;
+      color: #5b21b6;
+    }
+
+    .industry-layout {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 22px;
+      margin-top: 20px;
+      align-items: stretch;
+    }
+
+    .evolution-panel,
+    .current-pains {
+      min-height: 386px;
+      padding: 20px;
+    }
+
+    .evolution-panel h3,
+    .current-pains h3,
+    .architecture-panel h3 {
+      color: #111827;
+      font-size: 24px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .evolution-list,
+    .pain-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .evolution-item,
+    .pain-item {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 12px;
+      align-items: center;
+      min-height: 82px;
+      padding: 12px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .82);
+    }
+
+    .evolution-item > b,
+    .pain-item > b {
+      display: grid;
+      min-height: 52px;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--item-color, var(--theme));
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 950;
+      text-align: center;
+    }
+
+    .evolution-item:nth-child(1), .pain-item:nth-child(1) { --item-color: #2563eb; }
+    .evolution-item:nth-child(2), .pain-item:nth-child(2) { --item-color: #10b981; }
+    .evolution-item:nth-child(3), .pain-item:nth-child(3) { --item-color: #f97316; }
+
+    .evolution-item h4,
+    .pain-item h4 {
+      margin: 0;
+      color: #111827;
+      font-size: 17px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .evolution-item p,
+    .pain-item p {
+      margin-top: 4px;
+      color: #5b677a;
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 650;
+    }
+
+    .scope-reasons {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .scope-reason {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 10px;
+      align-items: center;
+      min-height: 58px;
+      padding: 9px 11px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .78);
+    }
+
+    .scope-reason b {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--theme);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 950;
+    }
+
+    .scope-reason span {
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.35;
+      font-weight: 820;
+    }
+
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .scenario-card {
+      min-height: 134px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--scene-color, var(--theme));
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: 0 12px 28px rgba(24, 50, 88, .07);
+    }
+
+    .scenario-card:nth-child(1) { --scene-color: #8b5cf6; }
+    .scenario-card:nth-child(2) { --scene-color: #2563eb; }
+    .scenario-card:nth-child(3) { --scene-color: #10b981; }
+    .scenario-card:nth-child(4) { --scene-color: #f59e0b; }
+
+    .scenario-card b {
+      display: block;
+      color: #111827;
+      font-size: 18px;
+      line-height: 1.25;
+      font-weight: 950;
+    }
+
+    .scenario-card p {
+      margin-top: 7px;
+      color: #5b677a;
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 650;
+    }
+
+    .target-band {
+      grid-column: 1 / -1;
+      min-height: 58px;
+      padding: 11px 14px;
+      border: 1px solid rgba(124, 58, 237, .25);
+      border-radius: 8px;
+      background: #f5f3ff;
+      color: #5b21b6;
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 850;
+    }
+
+    .architecture-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.15fr .95fr;
+      gap: 16px;
+      margin-top: 20px;
+      align-items: stretch;
+    }
+
+    .architecture-panel {
+      min-height: 342px;
+      padding: 18px;
+      border-top: 6px solid var(--arch-color, var(--theme));
+    }
+
+    .architecture-panel:nth-child(1) { --arch-color: #8b5cf6; }
+    .architecture-panel:nth-child(2) { --arch-color: #0f8f83; }
+    .architecture-panel:nth-child(3) { --arch-color: #2563eb; }
+
+    .arch-label {
+      display: inline-flex;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--arch-color);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .arch-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .arch-item {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 9px 10px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .8);
+      color: #334155;
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 820;
+    }
+
+    .arch-note {
+      margin-top: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #eff6ff;
+      color: #1e40af;
+      font-size: 12px;
+      line-height: 1.4;
+      font-weight: 820;
+    }
+
+    .dept-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .dept-item {
+      min-height: 70px;
+      padding: 11px;
+      border: 1px solid #d8e6f8;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .82);
+    }
+
+    .dept-item b {
+      display: block;
+      color: var(--theme);
+      font-size: 14px;
+      font-weight: 950;
+    }
+
+    .dept-item span {
+      display: block;
+      margin-top: 4px;
+      color: #5b677a;
+      font-size: 11px;
+      line-height: 1.35;
+      font-weight: 650;
+    }
+
+    .knowledge-layout.compact {
+      grid-template-columns: .82fr 1.18fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .knowledge-layout.compact .knowledge-flow,
+    .knowledge-layout.compact .knowledge-output {
+      min-height: 310px;
+      padding: 16px;
+    }
+
+    .knowledge-layout.compact .knowledge-item {
+      min-height: 82px;
+      padding: 12px;
+    }
+
+    .knowledge-layout.compact .flow-step {
+      min-height: 42px;
+      font-size: 13px;
+    }
+
+    .roadmap.compact {
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .roadmap.compact .road {
+      min-height: 390px;
+      padding: 18px;
+    }
+
+    .roadmap.compact .road h3 {
+      font-size: 25px;
+    }
+
+    .roadmap.compact .road .goal {
+      font-size: 14px;
+    }
+
+    .roadmap.compact .road-list {
+      margin-top: 12px;
+      gap: 7px;
+    }
+
+    .roadmap.compact .road-list div {
+      min-height: 34px;
+      padding: 7px 9px;
+      font-size: 13px;
+    }
+
+    .roadmap.compact .acceptance {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .deck { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide s1" id="slide-1">
+      <div class="topline">
+        <div class="page-id"><b>01</b><span>方案主题</span></div>
+        <div class="deck-tag">优特客户全生命周期 AI 运营平台 · 落地方案</div>
+      </div>
+      <div class="headline"><b>结论 01</b><span>建设一套从企微客户沟通出发、逐步服务销售增长的客户 AI 体系</span></div>
+      <h1>从现有服务群切入，把客户沟通、业务流程和销售跟进接成<span class="accent">一套 AI 系统</span></h1>
+      <p class="lead">这套方案不是先做一个“自动聊天机器人”，而是先让 AI 在后台理解真实客户问题、推荐回复与流程动作，再逐步沉淀知识库并进入销售增长场景。</p>
+
+      <div class="opening-layout">
+        <div class="panel opening-main">
+          <span class="section-kicker">我们要做的事</span>
+          <h3>让 AI 成为销售、售后和接待背后的业务助手</h3>
+          <p>第一阶段先从现有企微服务群入手，不改变客户原有沟通方式。AI 在后台识别需求、生成回复建议、预创建工单和后续任务，由负责人确认后再执行。</p>
+          <div class="capability-grid">
+            <div class="capability-card"><b>1</b><span>读懂企微群里的客户问题和采购信号</span></div>
+            <div class="capability-card"><b>2</b><span>推荐回复话术、工单和下一步跟进动作</span></div>
+            <div class="capability-card"><b>3</b><span>联动 OA、工单、CRM 和回访流程</span></div>
+            <div class="capability-card"><b>4</b><span>沉淀客户画像、产品经验和销售知识库</span></div>
+          </div>
+        </div>
+
+        <div class="opening-path">
+          <article class="path-card">
+            <b>1</b>
+            <div><h3>先接入服务与接待群</h3><p>客户已经在场、需求真实、流程明确，最容易跑出第一阶段价值。</p></div>
+          </article>
+          <article class="path-card">
+            <b>2</b>
+            <div><h3>再跑通流程与知识库</h3><p>把确认后的处理过程和结果沉淀为可复用的企业知识。</p></div>
+          </article>
+          <article class="path-card">
+            <b>3</b>
+            <div><h3>最后进入销售 AI</h3><p>基于前两步沉淀的真实数据和知识库，为销售输出跟进摘要、话术建议、异议处理和商机推进。</p></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="value-footer">
+        <b>开场主张</b>
+        <span>服务和接待先行，不是偏离销售目标，而是在为销售 AI 建立真实、可复用、可验证的业务基础。</span>
+      </div>
+    </section>
+
+    <section class="slide s2" id="slide-2">
+      <div class="topline">
+        <div class="page-id"><b>02</b><span>为什么现在做</span></div>
+        <div class="deck-tag">设备成交只是开始 · 客户长期成功决定价值</div>
+      </div>
+      <div class="headline"><b>结论 02</b><span>长期服务和客户持续经营，正在成为智能炒菜机的新竞争力</span></div>
+      <h2>竞争正在从“卖设备”走向<span class="hot">产品 + 服务 + 运营</span></h2>
+      <p class="lead">客户购买的不只是一台设备，而是一套能够稳定出品、持续使用、快速解决问题并支持长期经营的解决方案。</p>
+
+      <div class="industry-layout">
+        <div class="panel evolution-panel">
+          <h3>行业竞争正在发生三层变化</h3>
+          <div class="evolution-list">
+            <div class="evolution-item"><b>过去</b><div><h4>比较设备</h4><p>性能、自动化程度、出品效率和价格。</p></div></div>
+            <div class="evolution-item"><b>现在</b><div><h4>比较使用效果</h4><p>稳定出品、交付质量、操作难度和服务响应。</p></div></div>
+            <div class="evolution-item"><b>未来</b><div><h4>比较长期运营能力</h4><p>客户成功、持续服务、产品优化和复购增购。</p></div></div>
+          </div>
+        </div>
+
+        <div class="panel current-pains">
+          <h3>客户增长后，经营仍受制于三个断点</h3>
+          <div class="pain-list">
+            <div class="pain-item"><b>01</b><div><h4>客户信息分散</h4><p>企微群、电话、销售记录和服务记录无法形成完整客户画像。</p></div></div>
+            <div class="pain-item"><b>02</b><div><h4>服务过程不可见</h4><p>谁在处理、是否解决、客户是否满意，管理层难以及时掌握。</p></div></div>
+            <div class="pain-item"><b>03</b><div><h4>客户价值未持续经营</h4><p>服务数据、客户反馈和增购机会没有持续反哺销售与产品。</p></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-footer">
+        <b>商业判断</b>
+        <span>优特需要的不是再增加一个独立工具，而是把分散沟通和业务过程变成企业可持续经营的客户资产。</span>
+      </div>
+    </section>
+
+    <section class="slide s3" id="slide-3">
+      <div class="topline">
+        <div class="page-id"><b>03</b><span>战略路径</span></div>
+        <div class="deck-tag">先可控 · 再自动 · 后增长</div>
+      </div>
+      <div class="headline"><b>结论 03</b><span>销售 AI 要分阶段落地，先可控接入，再逐步扩大自动化边界</span></div>
+      <h2>优特 AI 的三阶段路径：<span class="accent">接进来、跑起来、卖得好</span></h2>
+      <p class="lead">不直接从全自动销售聊天开始，是为了先建立真实数据、业务流程和人工确认机制，让 AI 的输出有依据、可验证、能落地。</p>
+
+      <div class="goal-layout">
+        <div class="panel goal-card">
+          <div>
+            <span class="section-kicker">落地原则</span>
+            <h3>从“AI 推荐，人确认”起步</h3>
+            <p>先让团队看见 AI 对服务和接待的帮助，再把客户画像、产品知识和话术经验持续沉淀下来。</p>
+            <div class="strategy-note">首期边界：AI 推荐、人工确认；自动发送、自动报价和高风险判断不作为第一阶段承诺。</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric"><b>可控</b><span>关键回复由人确认，降低误发风险</span></div>
+            <div class="metric"><b>可验</b><span>每阶段都有闭环和验收标准</span></div>
+          </div>
+        </div>
+
+        <div class="stage-map">
+          <article class="stage-card">
+            <span class="stage-no">阶段一</span>
+            <h3>沟通接入与 AI 推荐</h3>
+            <p class="stage-summary">接入服务群、交付群和接待群，生成回复、提醒与工单建议。</p>
+            <div class="stage-list">
+              <div>识别客户原话、问题和责任人</div>
+              <div>推荐回复、工单和下一步动作</div>
+              <div>人工确认后执行和流转</div>
+            </div>
+          </article>
+
+          <article class="stage-card">
+            <span class="stage-no">阶段二</span>
+            <h3>流程自动化与知识库</h3>
+            <p class="stage-summary">将高频、低风险、规则明确的服务事项逐步自动流转。</p>
+            <div class="stage-list">
+              <div>联动 OA、工单、CRM 和回访</div>
+              <div>沉淀客户、产品和流程知识</div>
+              <div>建立风险分级和人工兜底</div>
+            </div>
+          </article>
+
+          <article class="stage-card">
+            <span class="stage-no">阶段三</span>
+            <h3>销售辅助与客户经营</h3>
+            <p class="stage-summary">基于真实数据，为销售提供更贴近优特业务的跟进建议。</p>
+            <div class="stage-list">
+              <div>客户摘要和下一步建议</div>
+              <div>试菜邀约、异议和报价辅助</div>
+              <div>商机分层与复购增购识别</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="value-footer">
+        <b>对优特的价值</b>
+        <span>每一步先产生可见业务价值，再进入更高程度的自动化，降低销售 AI 的实施风险。</span>
+      </div>
+    </section>
+
+    <section class="slide s4" id="slide-4">
+      <div class="topline">
+        <div class="page-id"><b>04</b><span>第一阶段范围</span></div>
+        <div class="deck-tag">客户沟通进企微 · 服务和接待先行</div>
+      </div>
+      <div class="headline"><b>结论 04</b><span>服务与接待不是边缘场景，而是客户 AI 最稳妥的冷启动入口</span></div>
+      <h2>从服务群、交付群和参观接待群开始，最快形成<span class="accent">真实业务数据</span></h2>
+      <p class="lead">这些场景客户已经在场、问题真实、流程边界清楚，既容易验证 AI 价值，也能帮助团队形成客户沟通进入企微的习惯。</p>
+
+      <div class="scope-layout">
+        <div class="panel scope-card">
+          <span class="section-kicker">为什么优先从这里开始</span>
+          <h3>确定性高，价值容易被感知</h3>
+          <p>第一阶段不同时铺开所有 AI 能力，而是先把最有确定性的客户场景跑通。</p>
+          <div class="scope-reasons">
+            <div class="scope-reason"><b>1</b><span>客户已经在场，进入企微的理由自然</span></div>
+            <div class="scope-reason"><b>2</b><span>报修、安装、试菜等问题真实且高频</span></div>
+            <div class="scope-reason"><b>3</b><span>负责人、流程动作和完成状态清楚</span></div>
+            <div class="scope-reason"><b>4</b><span>少漏消息、快派单、快回访，效果可见</span></div>
+          </div>
+        </div>
+
+        <div class="scenario-grid">
+          <article class="scenario-card"><b>参观接待与试菜群</b><p>提取预约时间、展厅、人数、菜品、食材和口味评价。</p></article>
+          <article class="scenario-card"><b>已成交未安装交付群</b><p>跟踪发货、到货、现场条件、安装、培训和回访。</p></article>
+          <article class="scenario-card"><b>质保期内售后群</b><p>从大量群消息中发现报修，预创建维修工单和派工建议。</p></article>
+          <article class="scenario-card"><b>质保期外服务群</b><p>识别费用、配件、质保争议和延保机会，发起核验流程。</p></article>
+          <div class="target-band"><b>后续目标：销售 AI</b>　基于前述场景沉淀的真实数据和知识，为销售提供客户摘要、跟进话术、异议处理和商机建议。</div>
+        </div>
+      </div>
+
+      <div class="value-footer">
+        <b>第一阶段策略</b>
+        <span>先让最有确定性的四类客户场景形成闭环，再把能力自然扩展到销售增长。</span>
+      </div>
+    </section>
+
+    <section class="slide s5" id="slide-5">
+      <div class="topline">
+        <div class="page-id"><b>05</b><span>Demo 解读</span></div>
+        <div class="deck-tag">保内售后场景 · 群聊到业务闭环</div>
+      </div>
+      <div class="headline"><b>结论 05</b><span>Demo 验证的是“群聊到工单、任务和回复”的半自动闭环</span></div>
+      <h2>客户一句话，可以转成工单、派工建议和<span class="accent">可确认回复</span></h2>
+      <p class="lead">AI 不替工程师诊断，也不替主管拍板，而是提前整理业务信息和待办事项，让负责人更快确认和推进。</p>
+
+      <div class="demo-layout">
+        <div class="panel screenshot-card">
+          <div class="shot-head"><span>最新版 Demo：质保期内售后服务群</span><span>群聊 → 工单 → 回复</span></div>
+          <div class="shot-window"><img src="assets/warranty-demo-latest.png" alt="优特 AI 服务保内售后 Demo 截图"></div>
+        </div>
+
+        <div class="explain-grid">
+          <div class="explain-card"><span class="num">1</span><h3>客户自然表达</h3><p>客户在企微群描述问题，不需要填写额外表单。</p></div>
+          <div class="explain-card"><span class="num">2</span><h3>AI 提取关键信息</h3><p>识别客户、设备、问题、影响程度、情绪和期望时间。</p></div>
+          <div class="explain-card"><span class="num">3</span><h3>预创建协同任务</h3><p>生成维修工单、OA 派工、带件建议和 CRM 回访任务。</p></div>
+          <div class="explain-card"><span class="num">4</span><h3>人工确认后执行</h3><p>主管确认任务与回复，再以员工身份向客户发送。</p></div>
+        </div>
+      </div>
+
+      <div class="value-footer">
+        <b>可信边界</b>
+        <span>AI 负责识别与串联，不替代工程师诊断；页面为示例数据，OA、工单、CRM 属于拟联动或演示联动。</span>
+      </div>
+    </section>
+
+    <section class="slide s6" id="slide-6">
+      <div class="topline">
+        <div class="page-id"><b>06</b><span>总体方案</span></div>
+        <div class="deck-tag">企微入口 · AI 中枢 · 现有系统</div>
+      </div>
+      <div class="headline"><b>结论 06</b><span>以企业微信为客户沟通入口，用 AI 连接优特现有业务体系</span></div>
+      <h2>不改变现有工作方式，在客户沟通与业务系统之间增加<span class="accent">一层 AI 能力</span></h2>
+      <p class="lead">客户继续使用企微沟通，员工继续使用现有 OA、工单和 CRM；AI 负责理解信息、组织任务和推动流程。</p>
+
+      <div class="architecture-layout">
+        <div class="panel architecture-panel">
+          <span class="arch-label">第一层</span>
+          <h3>客户沟通入口</h3>
+          <div class="arch-list">
+            <div class="arch-item">企业微信客户群</div>
+            <div class="arch-item">参观接待与试菜群</div>
+            <div class="arch-item">交付、安装与售后群</div>
+            <div class="arch-item">销售和服务工作台</div>
+          </div>
+        </div>
+
+        <div class="panel architecture-panel">
+          <span class="arch-label">第二层</span>
+          <h3>AI 客户经营中枢</h3>
+          <div class="arch-list">
+            <div class="arch-item">客户与设备身份识别</div>
+            <div class="arch-item">意图理解与知识检索</div>
+            <div class="arch-item">流程、责任人与风险判断</div>
+            <div class="arch-item">工单、任务和回复建议生成</div>
+          </div>
+          <div class="arch-note">AI 不只是回答问题，而是理解上下文并推动下一步业务行动。</div>
+        </div>
+
+        <div class="panel architecture-panel">
+          <span class="arch-label">第三层</span>
+          <h3>优特现有系统</h3>
+          <div class="arch-list">
+            <div class="arch-item">OA、审批与工单系统</div>
+            <div class="arch-item">CRM 与客户档案</div>
+            <div class="arch-item">设备、合同与质保档案</div>
+            <div class="arch-item">产品、配件与服务知识库</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-footer">
+        <b>实施前提</b>
+        <span>需要开放企微会话存档授权，并共同确认 OA、工单、CRM、设备档案和知识资料的对接范围。</span>
+      </div>
+    </section>
+
+    <section class="slide s7" id="slide-7">
+      <div class="topline">
+        <div class="page-id"><b>07</b><span>知识与组织价值</span></div>
+        <div class="deck-tag">服务过程沉淀为长期资产</div>
+      </div>
+      <div class="headline"><b>结论 07</b><span>知识库不是另起炉灶整理文档，而是在业务闭环中自然沉淀</span></div>
+      <h2>每一次客户服务闭环，都在补全优特专属的<span class="accent">业务知识资产</span></h2>
+      <p class="lead">只有经过人工确认、流程执行和结果验证的业务经验，才进入知识库，确保后续 AI 输出有依据、可追溯。</p>
+
+      <div class="knowledge-layout compact">
+        <div class="panel knowledge-flow">
+          <span class="section-kicker">从客户原话到企业知识</span>
+          <div class="quote-box"><span>客户原话</span><b>“生抽一直不下，前两次也是这么说的，这次能不能彻底解决？”</b></div>
+          <div class="flow-steps">
+            <div class="flow-step"><b>1</b><span>AI 提取问题、情绪与业务影响</span></div>
+            <div class="flow-step"><b>2</b><span>人工确认工单、派工与回复</span></div>
+            <div class="flow-step"><b>3</b><span>负责人处理并记录最终原因</span></div>
+            <div class="flow-step"><b>4</b><span>结果归档，形成可复用经验</span></div>
+          </div>
+        </div>
+
+        <div class="panel knowledge-output">
+          <h3>沉淀为四类可复用知识</h3>
+          <div class="knowledge-grid">
+            <div class="knowledge-item"><b>客户画像</b><span>业态、门店、偏好、服务记录、关注点与经营诉求。</span></div>
+            <div class="knowledge-item"><b>产品经验</b><span>常见故障、设备参数、配件匹配与维修归因。</span></div>
+            <div class="knowledge-item"><b>服务流程</b><span>安装、培训、报修、派工、回访与风险处理 SOP。</span></div>
+            <div class="knowledge-item"><b>销售知识</b><span>客户异议、试菜偏好、成功案例与复购增购话术。</span></div>
+          </div>
+          <div class="dept-strip">
+            <div class="dept-item"><b>销售</b><span>完整背景、跟进建议、复购线索</span></div>
+            <div class="dept-item"><b>售后</b><span>少翻群、快派单、快回访</span></div>
+            <div class="dept-item"><b>产品质量</b><span>重复故障与共性问题分析</span></div>
+            <div class="dept-item"><b>管理层</b><span>统一客户视图与经营指标</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-footer dark">
+        <b>长期价值</b>
+        <span>优特最终沉淀的不是聊天记录，而是客户理解、产品经验、服务 SOP 和销售打法。</span>
+      </div>
+    </section>
+
+    <section class="slide s8" id="slide-8">
+      <div class="topline">
+        <div class="page-id"><b>08</b><span>落地规划</span></div>
+        <div class="deck-tag">前 2–3 个月可见价值 · 分阶段验收</div>
+      </div>
+      <div class="headline"><b>结论 08</b><span>每一阶段都要有清晰成功标志，第一阶段不是终点</span></div>
+      <h2>小步快跑，先把服务闭环跑通，再进入<span class="accent">销售增长</span></h2>
+      <p class="lead">前两到三个月优先完成企微信息接入、关键事件提取、流程草稿和人工确认机制，再根据试点效果扩大自动化范围。</p>
+
+      <div class="roadmap compact">
+        <article class="road">
+          <span class="road-label">阶段一</span>
+          <h3>接进来</h3>
+          <p class="goal">接入服务、交付和接待群，让 AI 稳定识别客户事项。</p>
+          <div class="road-list">
+            <div>企微消息与客户身份关联</div>
+            <div>报修、安装、培训、试菜需求识别</div>
+            <div>提醒、回复建议和工单/OA 草稿</div>
+            <div>人工确认发送与基础知识沉淀</div>
+          </div>
+          <div class="acceptance">成功标志：关键事项可稳定识别，并形成可用、可确认的业务任务。</div>
+        </article>
+
+        <article class="road">
+          <span class="road-label">阶段二</span>
+          <h3>跑起来</h3>
+          <p class="goal">让规则清楚、风险较低的服务流程逐步自动化。</p>
+          <div class="road-list">
+            <div>OA、工单、CRM 与回访联动</div>
+            <div>服务事件分级和自动提醒</div>
+            <div>知识库持续更新与调用</div>
+            <div>关键节点保留人工兜底</div>
+          </div>
+          <div class="acceptance">成功标志：高频流程稳定流转，知识可被售后和销售直接调用。</div>
+        </article>
+
+        <article class="road">
+          <span class="road-label">阶段三</span>
+          <h3>卖得好</h3>
+          <p class="goal">基于真实客户数据，为销售提供跟进和商机建议。</p>
+          <div class="road-list">
+            <div>客户摘要和下一步行动建议</div>
+            <div>试菜跟进、异议与报价辅助</div>
+            <div>客户分层与成交推进</div>
+            <div>复购、增购和延保机会识别</div>
+          </div>
+          <div class="acceptance">成功标志：销售能够采用 AI 输出，形成可跟踪的增长线索。</div>
+        </article>
+      </div>
+
+      <div class="value-footer dark">
+        <b>共同验收</b>
+        <span>建议确认响应时效、遗漏率、派单率、回访率、试菜跟进率、AI 建议采用率和复购增购线索数。</span>
+      </div>
+    </section>
+  </main>
+  <script>
+    const deck = document.querySelector('.deck');
+
+    function fitDeckToViewport() {
+      const scale = Math.min(1, document.documentElement.clientWidth / 1366);
+      deck.style.zoom = String(scale);
+    }
+
+    fitDeckToViewport();
+    window.addEventListener('resize', fitDeckToViewport);
+  </script>
+</body>
+</html>
