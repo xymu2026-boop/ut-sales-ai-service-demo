@@ -1,11 +1,13 @@
-# UT Sales AI Service Demo
+# 优特销售 AI 助手 1.0 · 服务先行版
 
-Static GitHub Pages deployment for the UT Sales AI assistant service demo.
+本仓库仅用于发布“AI 服务”五个场景的静态演示页面。
 
-Entry:
+在线入口：
 
 ```text
 vendor/ai-sale/service-ai-demo/
 ```
 
-The published repo intentionally contains only the static demo pages and required assets.
+为控制公开范围，仓库只包含浏览器运行所必需的 HTML、CSS、JavaScript、图标和演示图片，不包含完整产品工程、客户资料、方案文档、PPT、测试材料或其他业务模块。
+
+本项目未采用开源许可证。页面与素材仅用于项目演示，未经授权不得复制或用于商业用途。

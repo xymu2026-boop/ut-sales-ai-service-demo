@@ -122,6 +122,12 @@
       height: 14px;
     }
 
+    .meta-pill.demo-notice {
+      border-color: #FCD34D;
+      background: #FFFBEB;
+      color: #92400E;
+    }
+
     .current-scene {
       min-width: 0;
       height: 38px;
@@ -165,7 +171,19 @@
       text-overflow: ellipsis;
     }
 
-    .current-scene-copy span {
+    .current-scene-copy .current-phase {
+      display: inline-block;
+      margin: 0 6px 0 0;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: color-mix(in srgb, var(--current-color, var(--brand)) 12%, #fff);
+      color: var(--current-color, var(--brand));
+      font-size: 10px;
+      font-weight: 900;
+      vertical-align: 1px;
+    }
+
+    .current-scene-copy > span {
       display: block;
       margin-top: 1px;
       color: var(--muted);
@@ -226,21 +244,21 @@
       <div class="brand-lockup">
         <div class="brand-mark">UT</div>
         <div class="brand-copy">
-          <h1>优特销售 AI 助手</h1>
-          <p>企微服务场景 Demo</p>
+          <h1>优特销售 AI 助手 1.0 · 服务先行版</h1>
+          <p>第一阶段：以客户服务与参观接待为主</p>
         </div>
       </div>
       <div class="current-scene" id="currentSceneSummary">
         <span class="current-scene-icon"><i data-lucide="message-square-text"></i></span>
         <span class="current-scene-copy">
-          <b id="currentSceneTitle">服务场景总入口</b>
+          <b><span class="current-phase" id="currentScenePhase">阶段一</span><span id="currentSceneTitle">服务场景总入口</span></b>
           <span id="currentSceneDesc">通过下方业务阶段导航切换五个 Demo 场景</span>
         </span>
       </div>
       <div class="nav-meta">
+        <span class="meta-pill demo-notice"><i data-lucide="info"></i>场景演示 · 示例数据</span>
         <span class="meta-pill"><i data-lucide="layout-dashboard"></i>统一入口</span>
-        <span class="meta-pill"><i data-lucide="message-square-text"></i>企微场景</span>
-        <span class="meta-pill"><i data-lucide="workflow"></i>OA / 工单 / CRM</span>
+        <span class="meta-pill"><i data-lucide="workflow"></i>拟联动 OA / 工单 / CRM</span>
       </div>
     </nav>
 
@@ -256,6 +274,7 @@
     const scenes = [
       {
         id: 'visit',
+        phase: '阶段一',
         title: '售前：参观接待 / 试菜群',
         desc: '销售邀约、展厅导航、试菜照片和客户评价',
         color: '#8B5CF6',
@@ -264,6 +283,7 @@
       },
       {
         id: 'delivery',
+        phase: '阶段二',
         title: '售后：已成交未安装',
         desc: '发货、物流、现场环境、安装和培训',
         color: '#2563EB',
@@ -272,6 +292,7 @@
       },
       {
         id: 'warranty',
+        phase: '阶段一',
         title: '售后：成交客户质保期内',
         desc: '多群浮现、保内报修、派工和闭环',
         color: '#10B981',
@@ -280,6 +301,7 @@
       },
       {
         id: 'outWarranty',
+        phase: '阶段二',
         title: '售后：质保期外 / 过保',
         desc: '过保群监控、费用协商和商城配件',
         color: '#F59E0B',
@@ -288,19 +310,21 @@
       },
       {
         id: 'sales',
+        phase: '阶段三',
         title: '销售：销售过程',
         desc: '询价承接、需求追问、方案推荐、异议处理和试菜推进',
         color: '#EC4899',
         icon: 'line-chart',
         url: '../scene-17-sales-process/index.html?embed=1'
-      }
+      },
     ];
 
     const frame = document.getElementById('sceneFrame');
     const currentSceneSummary = document.getElementById('currentSceneSummary');
     const currentSceneTitle = document.getElementById('currentSceneTitle');
+    const currentScenePhase = document.getElementById('currentScenePhase');
     const currentSceneDesc = document.getElementById('currentSceneDesc');
-    let activeId = new URLSearchParams(location.search).get('scene') || 'visit';
+    let activeId = new URLSearchParams(location.search).get('scene') || 'warranty';
 
     function selectScene(id) {
       const scene = scenes.find(item => item.id === id) || scenes[0];
@@ -313,6 +337,7 @@
       currentSceneSummary.style.setProperty('--current-color', scene.color);
       currentSceneSummary.querySelector('.current-scene-icon').innerHTML = '<i data-lucide="' + scene.icon + '"></i>';
       currentSceneTitle.textContent = scene.title;
+      currentScenePhase.textContent = scene.phase;
       currentSceneDesc.textContent = scene.desc;
       if (window.lucide) window.lucide.createIcons();
     }

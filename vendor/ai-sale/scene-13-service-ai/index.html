@@ -45,6 +45,18 @@
 
     button, input { font: inherit; }
 
+    button:focus-visible,
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid rgba(37, 99, 235, .28);
+      outline-offset: 2px;
+    }
+
+    button:disabled {
+      cursor: default;
+      opacity: .62;
+    }
+
     .demo-page {
       min-height: 100vh;
       display: flex;
@@ -54,6 +66,47 @@
 
     body.embed-mode .demo-nav {
       display: none;
+    }
+
+    body.embed-mode,
+    body.embed-mode .demo-page {
+      height: 100vh;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    body.embed-mode .demo-main {
+      flex: 1;
+      min-height: 0;
+      align-items: stretch;
+      overflow: hidden;
+    }
+
+    body.embed-mode .chat-shell {
+      height: 100%;
+      min-height: 0;
+    }
+
+    body.embed-mode .ai-shell {
+      height: 100%;
+      min-height: 0;
+    }
+
+    body.embed-mode .chat-window {
+      flex: 1;
+      min-height: 0;
+    }
+
+    body.embed-mode .ai-content {
+      flex: 1;
+      min-height: 0;
+    }
+
+    body.embed-mode .messages {
+      flex: 1;
+      height: auto;
+      min-height: 0;
+      max-height: none;
     }
 
     .demo-nav {
@@ -183,6 +236,9 @@
     }
 
     .stage-tab-num {
+      padding: 2px 5px;
+      border-radius: 4px;
+      background: color-mix(in srgb, var(--tab-color, var(--brand)) 10%, #fff);
       color: var(--tab-color, var(--brand));
       font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
       font-size: 11px;
@@ -654,14 +710,16 @@
     }
 
     .chat-input {
+      height: 58px;
       min-height: 58px;
+      max-height: 58px;
       padding: 9px 12px;
       border-top: 1px solid rgba(0, 0, 0, 0.06);
       background: #F7F8FA;
       display: flex;
       align-items: center;
       gap: 8px;
-      flex-shrink: 0;
+      flex: 0 0 58px;
     }
 
     .icon-btn {
@@ -783,7 +841,7 @@
       padding: 12px;
       background: #F7F8FA;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 300px;
+      grid-template-columns: minmax(0, 1fr) minmax(250px, 280px);
       gap: 12px;
       align-items: start;
     }
@@ -826,6 +884,42 @@
       font-size: 12px;
       line-height: 1.5;
       font-weight: 900;
+    }
+
+    .evidence-note {
+      grid-column: 1 / -1;
+      min-width: 0;
+      display: grid;
+      grid-template-columns: 24px minmax(0, 1fr);
+      gap: 8px;
+      align-items: center;
+      padding: 8px 10px;
+      border: 1px solid #BFDBFE;
+      border-radius: 7px;
+      background: #EFF6FF;
+      color: #1E3A8A;
+    }
+
+    .evidence-note i {
+      width: 24px;
+      height: 24px;
+      padding: 5px;
+      border-radius: 6px;
+      background: #DBEAFE;
+      color: #1D4ED8;
+    }
+
+    .evidence-note span {
+      font-size: 11px;
+      line-height: 1.45;
+      font-weight: 750;
+    }
+
+    body[data-active-scenario="visit-tasting"] #card-install,
+    body[data-active-scenario="visit-tasting"] #card-training,
+    body[data-active-scenario="visit-tasting"] #card-repair,
+    body[data-active-scenario="visit-tasting"] #card-parts {
+      display: none;
     }
 
     .ai-card {
@@ -1207,6 +1301,50 @@
       gap: 8px;
     }
 
+    .task-more {
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+
+    .task-more summary {
+      cursor: pointer;
+      color: #475569;
+      font-size: 11px;
+      line-height: 1.4;
+      font-weight: 800;
+    }
+
+    .task-more-list {
+      margin-top: 7px;
+      display: grid;
+      gap: 5px;
+    }
+
+    .task-more-list div {
+      min-width: 0;
+      padding: 6px 7px;
+      border-radius: 6px;
+      background: #F8FAFC;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      color: #475569;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+
+    .task-more-list span {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .task-more-list b {
+      color: #64748B;
+      white-space: nowrap;
+    }
+
     .task-item {
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -1525,24 +1663,24 @@
 
     <div class="scenario-tabs global-scene-tabs">
       <a class="stage-tab active" style="--tab-color:#8B5CF6" href="../scene-13-service-ai/index.html?scenario=visit-tasting">
-        <span class="stage-tab-num">售前：</span>
-        <span class="stage-tab-name">参观接待 / 试菜群</span>
+        <span class="stage-tab-num">阶段一</span>
+        <span class="stage-tab-name">售前 · 参观接待 / 试菜群</span>
       </a>
       <a class="stage-tab" style="--tab-color:#2563EB" href="../scene-14-delivery-install-training/index.html">
-        <span class="stage-tab-num">售后：</span>
-        <span class="stage-tab-name">已成交未安装</span>
+        <span class="stage-tab-num">阶段二</span>
+        <span class="stage-tab-name">售后 · 成交交付流程</span>
       </a>
       <a class="stage-tab" style="--tab-color:#10B981" href="../scene-15-warranty-service/index.html">
-        <span class="stage-tab-num">售后：</span>
-        <span class="stage-tab-name">成交客户质保期内</span>
+        <span class="stage-tab-num">阶段一</span>
+        <span class="stage-tab-name">售后 · 保内服务群</span>
       </a>
       <a class="stage-tab" style="--tab-color:#F59E0B" href="../scene-16-out-of-warranty-service/index.html">
-        <span class="stage-tab-num">售后：</span>
-        <span class="stage-tab-name">质保期外 / 过保</span>
+        <span class="stage-tab-num">阶段二</span>
+        <span class="stage-tab-name">售后 · 过保服务闭环</span>
       </a>
       <a class="stage-tab" style="--tab-color:#EC4899" href="../scene-17-sales-process/index.html">
-        <span class="stage-tab-num">销售：</span>
-        <span class="stage-tab-name">销售过程</span>
+        <span class="stage-tab-num">阶段三</span>
+        <span class="stage-tab-name">销售 AI · 目标能力</span>
       </a>
     </div>
 
@@ -1555,7 +1693,7 @@
             <b id="chatPanelTitle">企微群聊</b>
             <span id="chatPanelSubtitle">客户、销售、售后、厨师在群内连续沟通</span>
           </div>
-          <span class="live-badge"><span class="live-dot"></span>会话存档接入中</span>
+          <span class="live-badge"><span class="live-dot"></span>阶段一场景演示</span>
         </div>
 
         <div class="chat-window">
@@ -1573,7 +1711,7 @@
         </div>
 
         <div class="playbar">
-          <button class="control-btn" type="button" id="resetBtn"><i data-lucide="rotate-ccw"></i>重播</button>
+          <button class="control-btn" type="button" id="resetBtn"><i data-lucide="rotate-ccw"></i>重新开始</button>
           <button class="control-btn" type="button" id="stepBtn"><i data-lucide="step-forward"></i>步进</button>
           <button class="control-btn primary" type="button" id="playBtn"><i data-lucide="pause"></i><span>暂停</span></button>
           <div class="progress">
@@ -1586,10 +1724,10 @@
       <section class="ai-shell">
         <div class="panel-head">
           <div class="panel-title">
-            <b>AI 机器人实时分析</b>
-            <span id="aiSubtitle">等待群聊消息触发业务事件</span>
+            <b>AI 业务助手 · 场景分析</b>
+            <span id="aiSubtitle">从企微沟通中提取接待信息并预创建任务</span>
           </div>
-          <span class="live-badge"><span class="live-dot"></span>AI 机器人分析中</span>
+          <span class="live-badge"><span class="live-dot"></span>演示推演</span>
         </div>
 
         <div class="ai-content">
@@ -1597,6 +1735,11 @@
             <div class="ai-context-note">
               <i data-lucide="bell-ring"></i>
               <span>售前接待和试菜群里，客户时间、展厅、菜品、口味评价和自带食材常散在聊天中，销售/接待容易漏准备。AI 会提取试菜预约、备料清单和客户偏好，并提前提醒负责人。</span>
+            </div>
+
+            <div class="evidence-note">
+              <i data-lucide="badge-check"></i>
+              <span>本页只展示四类结果：接待预约与备料、试菜评价、客户画像和 24 小时跟进；关键动作由负责人确认。</span>
             </div>
 
             <article class="ai-card" id="card-install" style="--card-color:#2563EB">
@@ -1633,7 +1776,7 @@
 
             <article class="ai-card" id="card-dishes" style="--card-color:#8B5CF6">
               <div class="card-head">
-                <div class="card-title"><i data-lucide="utensils"></i><span>试菜菜品</span></div>
+                <div class="card-title"><i data-lucide="utensils"></i><span>接待预约与备料</span></div>
                 <span class="status-tag" data-status>待识别</span>
               </div>
               <div class="card-body" data-body></div>
@@ -1641,7 +1784,7 @@
 
             <article class="ai-card" id="card-feedback" style="--card-color:#06B6D4">
               <div class="card-head">
-                <div class="card-title"><i data-lucide="thumbs-up"></i><span>客户评价</span></div>
+                <div class="card-title"><i data-lucide="thumbs-up"></i><span>试菜评价与素材</span></div>
                 <span class="status-tag" data-status>待识别</span>
               </div>
               <div class="card-body" data-body></div>
@@ -1677,7 +1820,7 @@
 
             <article class="ai-card span-2" style="--card-color:#2563EB">
               <div class="card-head">
-                <div class="card-title"><i data-lucide="message-square-reply"></i><span>确认后发送的回复建议</span></div>
+                <div class="card-title"><i data-lucide="message-square-reply"></i><span>人工确认回复</span></div>
                 <span class="status-tag" id="replyStatus">待生成</span>
               </div>
               <div id="replyBox">
@@ -1687,8 +1830,8 @@
 
             <article class="ai-card span-2" style="--card-color:#8B5CF6">
               <div class="card-head">
-                <div class="card-title"><i data-lucide="activity"></i><span>AI 机器人执行记录</span></div>
-                <span class="status-tag detected">实时</span>
+                <div class="card-title"><i data-lucide="activity"></i><span>场景处理记录</span></div>
+                <span class="status-tag detected">演示</span>
               </div>
               <div class="agent-log" id="agentLog">
                 <div class="empty-copy">等待第一条群聊消息...</div>
@@ -1698,7 +1841,7 @@
         </div>
 
         <div class="footer-note">
-          一期演示重点：AI 不直接替人“自动聊天”，而是在后台识别事件、预创建流程、生成回复草稿，再由销售或售后确认后发出。
+          本页结论：AI 把接待时间、菜品、食材、客户评价和后续动作整理成可执行清单，当前阶段由销售或接待人员确认后执行。
         </div>
       </section>
     </main>
@@ -2146,6 +2289,7 @@
       renderTabs();
 
       const scenario = scenarios[index];
+      document.body.dataset.activeScenario = scenario.id;
       els.groupTitle.textContent = scenario.group;
       els.groupCount.textContent = scenario.count;
       els.chatPanelTitle.textContent = scenario.title;
@@ -2172,6 +2316,7 @@
     }
 
     function play() {
+      if (state.messageIndex >= scenarios[state.scenarioIndex].messages.length) return;
       state.playing = true;
       updatePlayButton();
       schedule();
@@ -2184,8 +2329,10 @@
     }
 
     function updatePlayButton() {
-      const icon = state.playing ? 'pause' : 'play';
-      const text = state.playing ? '暂停' : '播放';
+      const complete = state.messageIndex >= scenarios[state.scenarioIndex].messages.length;
+      const icon = complete ? 'check' : state.playing ? 'pause' : 'play';
+      const text = complete ? '演示完成' : state.playing ? '暂停' : state.messageIndex <= 1 ? '开始演示' : '继续演示';
+      els.playBtn.disabled = complete;
       els.playBtn.innerHTML = `<i data-lucide="${icon}"></i><span>${text}</span>`;
       createIcons();
     }
@@ -2199,6 +2346,7 @@
       applyUpdates(msg);
       state.messageIndex += 1;
       updateProgress();
+      updatePlayButton();
       triggerExtraction(row, msg);
       return state.messageIndex < scenario.messages.length;
     }
@@ -2272,7 +2420,7 @@
     function addAiReply(reply) {
       const key = state.scenarioIndex + ':' + reply.text;
       if (state.sentReplyKey === key) {
-        showToast('这条回复已经发送到群里');
+        showToast('这条回复已经完成演示');
         return;
       }
       state.sentReplyKey = key;
@@ -2283,8 +2431,8 @@
         time: currentTime(),
         text: reply.text
       });
-      showToast('已模拟由' + reply.by + '确认并发送');
-      els.replyStatus.textContent = '已发送';
+      showToast('演示：已由' + reply.by + '人工确认发送');
+      els.replyStatus.textContent = '演示已完成';
       els.replyStatus.className = 'status-tag detected';
       renderReply();
     }
@@ -2519,31 +2667,46 @@
     }
 
     function renderTasks() {
-      els.taskStatus.textContent = '草稿 ' + state.tasks.length;
+      els.taskStatus.textContent = state.tasks.length ? '重点 1 / 共 ' + state.tasks.length : '暂无任务';
       els.taskStatus.className = state.tasks.length ? 'status-tag draft' : 'status-tag';
       if (!state.tasks.length) {
         els.taskList.innerHTML = '<div class="empty-copy">AI 会把群聊里的安装、培训、维修、配件、试菜和回访信号预创建为 OA / 工单 / CRM 任务。</div>';
         return;
       }
-      els.taskList.innerHTML = state.tasks.map((task, idx) => `
+      const scenario = scenarios[state.scenarioIndex];
+      const focusTaskName = scenario.id === 'visit-tasting' ? '24 小时方案跟进' : '安装预约任务';
+      const preferredIndex = state.tasks.findIndex(task => task.name === focusTaskName);
+      const focusIndex = preferredIndex >= 0 ? preferredIndex : state.tasks.length - 1;
+      const focusTask = state.tasks[focusIndex];
+      const remaining = state.tasks.filter((task, idx) => idx !== focusIndex);
+      const created = focusTask.status === '已创建';
+      els.taskList.innerHTML = `
         <div class="task-item">
           <div class="task-top">
-            <div class="task-name"><i data-lucide="${taskIcon(task.type)}"></i><span>${escapeHtml(task.name)}</span></div>
-            <span class="status-tag draft">${escapeHtml(task.status || '待确认')}</span>
+            <div class="task-name"><i data-lucide="${taskIcon(focusTask.type)}"></i><span>${escapeHtml(focusTask.name)}</span></div>
+            <span class="status-tag ${created ? 'detected' : 'draft'}">${escapeHtml(created ? '演示已创建' : focusTask.status || '待确认')}</span>
           </div>
-          <div class="task-desc">${escapeHtml(task.desc)}</div>
+          <div class="task-desc">${escapeHtml(focusTask.desc)}</div>
           <div class="task-meta">
-            <span class="mini-tag">${escapeHtml(task.type)}</span>
-            <span class="mini-tag">负责人：${escapeHtml(task.owner)}</span>
+            <span class="mini-tag">${escapeHtml(focusTask.type)}</span>
+            <span class="mini-tag">负责人：${escapeHtml(focusTask.owner)}</span>
           </div>
-          <button class="small-btn primary" type="button" data-task-confirm="${idx}"><i data-lucide="check"></i>确认创建</button>
+          <button class="small-btn primary" type="button" data-task-confirm="${focusIndex}" ${created ? 'disabled' : ''}><i data-lucide="check"></i>${created ? '已完成演示' : '模拟确认创建'}</button>
         </div>
-      `).join('');
+        ${remaining.length ? `
+          <details class="task-more">
+            <summary>另外 ${remaining.length} 项流程待办</summary>
+            <div class="task-more-list">
+              ${remaining.map(task => `<div><span>${escapeHtml(task.name)}</span><b>${escapeHtml(task.status || '待确认')}</b></div>`).join('')}
+            </div>
+          </details>
+        ` : ''}
+      `;
       els.taskList.querySelectorAll('[data-task-confirm]').forEach((btn) => {
         btn.addEventListener('click', (event) => {
           const index = Number(event.currentTarget.dataset.taskConfirm);
           state.tasks[index].status = '已创建';
-          showToast(state.tasks[index].type + ' 任务已创建：' + state.tasks[index].name);
+          showToast('演示：已确认创建' + state.tasks[index].type + '任务');
           renderTasks();
           createIcons();
         });
@@ -2560,22 +2723,22 @@
       if (!state.reply) {
         els.replyStatus.textContent = '待生成';
         els.replyStatus.className = 'status-tag';
-        els.replyBox.innerHTML = '<div class="empty-copy">当关键字段足够完整后，AI 会生成一条以销售或售后身份发送的回复草稿。</div>';
+        els.replyBox.innerHTML = '<div class="empty-copy">AI 生成回复草稿；当前阶段由销售或接待人员确认，并在企微中人工发送。</div>';
         return;
       }
       const sent = state.sentReplyKey === state.scenarioIndex + ':' + state.reply.text;
-      els.replyStatus.textContent = sent ? '已发送' : '待确认';
+      els.replyStatus.textContent = sent ? '演示已完成' : '待人工确认';
       els.replyStatus.className = sent ? 'status-tag detected' : 'status-tag draft';
       els.replyBox.innerHTML = `
         <div class="reply-box">
           <div class="reply-text">${escapeHtml(state.reply.text)}</div>
           <div class="reply-actions">
             <span class="mini-tag">发送身份：${escapeHtml(state.reply.by)}</span>
-            <button class="small-btn primary" type="button" id="sendReplyBtn"><i data-lucide="send"></i>${sent ? '再次演示发送' : '确认发送'}</button>
+            <button class="small-btn primary" type="button" id="sendReplyBtn" ${sent ? 'disabled' : ''}><i data-lucide="send"></i>${sent ? '已完成演示' : '模拟人工发送'}</button>
           </div>
         </div>
       `;
-      document.getElementById('sendReplyBtn').addEventListener('click', () => addAiReply(state.reply));
+      if (!sent) document.getElementById('sendReplyBtn').addEventListener('click', () => addAiReply(state.reply));
     }
 
     function renderLogs() {

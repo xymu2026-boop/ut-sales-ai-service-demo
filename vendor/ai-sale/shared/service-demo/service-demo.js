@@ -8,11 +8,11 @@
   }
 
   const sceneLinks = [
-    { id: 'visit', name: '售前：参观接待 / 试菜群', href: sceneHref('../scene-13-service-ai/index.html?scenario=visit-tasting'), color: '#8B5CF6', icon: 'chef-hat' },
-    { id: 'delivery', name: '售后：已成交未安装', href: sceneHref('../scene-14-delivery-install-training/index.html'), color: '#2563EB', icon: 'truck' },
-    { id: 'warranty', name: '售后：成交客户质保期内', href: sceneHref('../scene-15-warranty-service/index.html'), color: '#10B981', icon: 'shield-check' },
-    { id: 'outWarranty', name: '售后：质保期外 / 过保', href: sceneHref('../scene-16-out-of-warranty-service/index.html'), color: '#F59E0B', icon: 'radar' },
-    { id: 'sales', name: '销售：销售过程', href: sceneHref('../scene-17-sales-process/index.html'), color: '#EC4899', icon: 'line-chart' }
+    { id: 'visit', phase: '阶段一', name: '参观接待 / 试菜群', href: sceneHref('../scene-13-service-ai/index.html?scenario=visit-tasting'), color: '#8B5CF6', icon: 'chef-hat' },
+    { id: 'delivery', phase: '阶段二', name: '成交交付流程', href: sceneHref('../scene-14-delivery-install-training/index.html'), color: '#2563EB', icon: 'truck' },
+    { id: 'warranty', phase: '阶段一', name: '保内服务群', href: sceneHref('../scene-15-warranty-service/index.html'), color: '#10B981', icon: 'shield-check' },
+    { id: 'outWarranty', phase: '阶段二', name: '过保服务闭环', href: sceneHref('../scene-16-out-of-warranty-service/index.html'), color: '#F59E0B', icon: 'radar' },
+    { id: 'sales', phase: '阶段三', name: '销售 AI 目标能力', href: sceneHref('../scene-17-sales-process/index.html'), color: '#EC4899', icon: 'line-chart' }
   ];
 
   const roleMeta = {
@@ -98,9 +98,14 @@
       subtitle: '销售真人在企微群中沟通，AI 同步抽取客户画像、需求、竞品异议和 CRM 跟进任务',
       group: '张总-优特智厨销售沟通群',
       count: '5 人',
-      statusText: '销售会话分析中',
+      phase: '阶段三 · 销售 AI',
+      statusText: '目标能力演示',
       footer: '本页重点：AI 不替销售直接开口，而是把客户需求、价格异议、竞品比较和下一步动作沉淀到 CRM / OA，给销售可确认发送的建议。',
-      contextNote: '销售过程里，客户需求、价格异议、试菜时间和报价测算常散落在多轮聊天中，销售容易漏记关键承诺。AI 会提取采购信号和下一步动作，并自动同步到 CRM 跟进。',
+      contextNote: '这是前两阶段沉淀客户沟通、服务流程和行业知识后的目标能力：AI 识别采购信号与下一步动作，销售确认后再推进客户。',
+      evidenceNote: '推荐依据：经审核的产品资料、同类客户案例、服务记录和销售话术；当前页面展示阶段三目标，不代表现阶段已自动执行。',
+      visibleInsights: ['profile', 'workflow', 'product', 'quality', 'next'],
+      focusTask: '试菜预约',
+      milestones: ['识别需求', '匹配知识', '人工确认', '试菜推进'],
       messages: [
         {
           role: 'sales',
@@ -265,9 +270,14 @@
       subtitle: '成交后的交付群中，AI 持续抽取物流、施工条件、安装预约和培训记录',
       group: '华东餐饮-优特智厨交付服务群（已成交未安装）',
       count: '9 人',
-      statusText: '交付流程监听中',
+      phase: '阶段二 · 流程闭环',
+      statusText: '交付场景演示',
       footer: '本页重点：AI 把发货、施工环境、安装、培训和回访串成一个 OA 交付流程，减少交付人员漏跟。',
       contextNote: '成交后的交付群往往跨销售、交付、工程师和培训老师多角色协同，物流、安装条件、培训安排任何一步漏跟，都会影响客户开业节奏。AI 会抽取关键节点并提前生成 OA / 工单提醒。',
+      evidenceNote: '数据来源：企微群聊、物流/OA 系统回写和现场确认记录；AI 负责汇总节点，关键动作仍由负责人确认。',
+      visibleInsights: ['profile', 'workflow', 'ticket', 'next'],
+      focusTask: '现场施工环境确认',
+      milestones: ['发货', '到货', '环境确认', '安装', '培训回访'],
       messages: [
         {
           role: 'delivery',
@@ -446,9 +456,13 @@
       subtitle: '先从几百个售后群中浮现高优先级报修，再进入客户群完成保内处理',
       group: '恒隆广场店-优特智厨质保服务群',
       count: '11 人',
-      statusText: '保内售后群监听中',
+      phase: '阶段一 · 沟通接入',
+      statusText: '保内服务演示',
       footer: '本页重点：售后不需要人工逐个翻群，AI 从大量未读群中优先浮现故障消息，并预创建保内维修工单。',
       contextNote: '每个售后可能要同时盯几十到几百个服务群，报修、配件和培训消息很容易被淹没。AI 会把关键问题自动提取出来，并及时提醒负责人处理。',
+      evidenceNote: '判断依据：客户原话、工程师到店结论和工单记录。AI 负责提取与串联，不替代工程师进行故障诊断。',
+      visibleInsights: ['profile', 'workflow', 'ticket', 'quality', 'next'],
+      focusTask: '保内上门派工确认',
       monitor: {
         total: 326,
         unread: 84,
@@ -604,8 +618,14 @@
       subtitle: 'AI 先把几百个售后群中的高风险问题浮现，再引导过保服务和配件购买闭环',
       group: '肖总-优特智厨售后服务群（过保）',
       count: '7 人',
-      statusText: '过保售后群监听中',
+      phase: '阶段二 · 服务闭环',
+      statusText: '过保服务演示',
       footer: '本页重点：过保客户常涉及费用、配件和质保争议，AI 先核验状态，再辅助售后给出可确认发送的服务方案。',
+      contextNote: '过保服务同时涉及费用、配件型号和质保争议。AI 先提取问题并发起核验，再由售后确认收费、配件或保内分流方案。',
+      evidenceNote: '权威依据：合同、设备编号、启用时间和配件 SKU。AI 不直接判定是否过保，也不替代售后确认收费标准。',
+      visibleInsights: ['profile', 'workflow', 'product', 'quality', 'next'],
+      focusTask: '质保状态核验',
+      milestones: ['发现问题', '核验状态', '确认方案', '服务闭环'],
       monitor: {
         total: 412,
         unread: 137,
@@ -812,9 +832,12 @@
   function renderShell(activeId, currentScene) {
     const links = sceneLinks.map(link => `
       <a class="scene-link ${link.id === activeId ? 'active' : ''}" style="--scene-color:${link.color}" href="${link.href}">
-        <i data-lucide="${link.icon}"></i><span>${escapeHtml(link.name)}</span>
+        <i data-lucide="${link.icon}"></i>
+        <span class="scene-phase">${escapeHtml(link.phase)}</span>
+        <span>${escapeHtml(link.name)}</span>
       </a>
     `).join('');
+    const visibleInsights = currentScene.visibleInsights || insightDefs.map(def => def.id);
 
     return `
       <div class="service-demo ${isEmbedded ? 'embedded' : ''}" style="--brand:${currentScene.color}">
@@ -839,6 +862,7 @@
           <section class="chat-shell">
             <div class="panel-head">
               <div class="panel-title">
+                <span class="phase-label">${escapeHtml(currentScene.phase || '场景演示')}</span>
                 <b>${escapeHtml(currentScene.title)}</b>
                 <span>${escapeHtml(currentScene.subtitle)}</span>
               </div>
@@ -861,7 +885,7 @@
             </div>
 
             <div class="playbar">
-              <button class="control-btn" type="button" id="resetBtn"><i data-lucide="rotate-ccw"></i>重播</button>
+              <button class="control-btn" type="button" id="resetBtn"><i data-lucide="rotate-ccw"></i>重新开始</button>
               <button class="control-btn" type="button" id="stepBtn"><i data-lucide="step-forward"></i>步进</button>
               <button class="control-btn primary" type="button" id="playBtn"><i data-lucide="pause"></i><span>暂停</span></button>
               <div class="progress">
@@ -874,10 +898,10 @@
           <section class="ai-shell">
             <div class="panel-head">
               <div class="panel-title">
-                <b>AI 机器人实时分析</b>
-                <span>群消息识别后同步 OA / 工单 / CRM / 商城</span>
+                <b>AI 业务助手 · 场景分析</b>
+                <span>从企微沟通中提取信息，演示联动 OA / 工单 / CRM / 商城</span>
               </div>
-              <span class="live-badge"><span class="live-dot"></span>Agent 分析中</span>
+              <span class="live-badge"><span class="live-dot"></span>演示推演</span>
             </div>
 
             <div class="ai-content">
@@ -888,9 +912,17 @@
                     <span>${escapeHtml(currentScene.contextNote)}</span>
                   </div>
                 ` : ''}
+                ${currentScene.evidenceNote ? `
+                  <div class="evidence-note"><i data-lucide="badge-check"></i><span>${escapeHtml(currentScene.evidenceNote)}</span></div>
+                ` : ''}
+                ${currentScene.milestones ? `
+                  <ol class="scene-milestones" style="--milestone-count:${currentScene.milestones.length}">
+                    ${currentScene.milestones.map((item, index) => `<li><span>${index + 1}</span><b>${escapeHtml(item)}</b></li>`).join('')}
+                  </ol>
+                ` : ''}
                 <div class="connector-flow" id="connectorFlow"></div>
                 <div class="insight-grid">
-                  ${insightDefs.map(renderInsightCard).join('')}
+                  ${insightDefs.filter(def => visibleInsights.includes(def.id)).map(renderInsightCard).join('')}
                 </div>
               </div>
 
@@ -905,7 +937,7 @@
 
                 <article class="side-card" style="--card-color:#2563EB">
                   <div class="side-head">
-                    <div class="side-title"><i data-lucide="message-square-reply"></i><span>确认后发送回复</span></div>
+                    <div class="side-title"><i data-lucide="message-square-reply"></i><span>人工确认回复</span></div>
                     <span class="status-tag" id="replyStatus">待生成</span>
                   </div>
                   <div id="replyBox"></div>
@@ -913,8 +945,8 @@
 
                 <article class="side-card" style="--card-color:#8B5CF6">
                   <div class="side-head">
-                    <div class="side-title"><i data-lucide="activity"></i><span>AI 执行记录</span></div>
-                    <span class="status-tag detected">实时</span>
+                    <div class="side-title"><i data-lucide="activity"></i><span>场景处理记录</span></div>
+                    <span class="status-tag detected">演示</span>
                   </div>
                   <div class="agent-log" id="agentLog"></div>
                 </article>
@@ -999,6 +1031,7 @@
   }
 
   function play() {
+    if (state.messageIndex >= scene.messages.length) return;
     state.playing = true;
     updatePlayButton();
     schedule();
@@ -1011,7 +1044,10 @@
   }
 
   function updatePlayButton() {
-    els.playBtn.innerHTML = `<i data-lucide="${state.playing ? 'pause' : 'play'}"></i><span>${state.playing ? '暂停' : '播放'}</span>`;
+    const complete = state.messageIndex >= scene.messages.length;
+    const label = complete ? '演示完成' : state.playing ? '暂停' : state.messageIndex <= 1 ? '开始演示' : '继续演示';
+    els.playBtn.disabled = complete;
+    els.playBtn.innerHTML = `<i data-lucide="${complete ? 'check' : state.playing ? 'pause' : 'play'}"></i><span>${label}</span>`;
     createIcons();
   }
 
@@ -1024,6 +1060,7 @@
     state.messageIndex += 1;
     renderMonitor();
     updateProgress();
+    updatePlayButton();
     triggerExtraction(row, msg);
     return state.messageIndex < scene.messages.length;
   }
@@ -1219,7 +1256,7 @@
       return `
         <div class="connector-step ${active ? 'active' : ''}">
           <i data-lucide="${item.icon}"></i>
-          <div><b>${item.title}</b><span>${active ? '已对接' : item.copy}</span></div>
+          <div><b>${item.title}</b><span>${active ? '演示联动' : '拟联动'}</span></div>
         </div>
       `;
     }).join('');
@@ -1227,6 +1264,7 @@
 
   function renderAllCards() {
     insightDefs.forEach(def => {
+      if (!document.getElementById('card-' + def.id)) return;
       if (def.id === 'profile') renderProfileCard();
       else renderInsightCardBody(def.id);
     });
@@ -1340,31 +1378,44 @@
   }
 
   function renderTasks() {
-    els.taskStatus.textContent = '草稿 ' + state.tasks.length;
+    els.taskStatus.textContent = state.tasks.length ? '重点 1 / 共 ' + state.tasks.length : '暂无任务';
     els.taskStatus.className = state.tasks.length ? 'status-tag draft' : 'status-tag';
     if (!state.tasks.length) {
       els.taskList.innerHTML = '<div class="empty-copy">AI 会把群消息预创建为 OA、工单、CRM 或商城任务，等待人工确认。</div>';
       return;
     }
-    els.taskList.innerHTML = state.tasks.map((task, idx) => `
+    const preferredIndex = state.tasks.findIndex(task => task.name === scene.focusTask);
+    const focusIndex = preferredIndex >= 0 ? preferredIndex : state.tasks.length - 1;
+    const focusTask = state.tasks[focusIndex];
+    const remaining = state.tasks.filter((task, idx) => idx !== focusIndex);
+    const created = focusTask.status === '已创建';
+    els.taskList.innerHTML = `
       <div class="task-item">
         <div class="task-top">
-          <div class="task-name"><i data-lucide="${taskIcon(task.type)}"></i><span>${escapeHtml(task.name)}</span></div>
-          <span class="status-tag draft">${escapeHtml(task.status || '待确认')}</span>
+          <div class="task-name"><i data-lucide="${taskIcon(focusTask.type)}"></i><span>${escapeHtml(focusTask.name)}</span></div>
+          <span class="status-tag ${created ? 'detected' : 'draft'}">${escapeHtml(created ? '演示已创建' : focusTask.status || '待确认')}</span>
         </div>
-        <div class="task-desc">${escapeHtml(task.desc)}</div>
+        <div class="task-desc">${escapeHtml(focusTask.desc)}</div>
         <div class="task-meta">
-          <span class="mini-tag">${escapeHtml(task.type)}</span>
-          <span class="mini-tag">负责人：${escapeHtml(task.owner)}</span>
+          <span class="mini-tag">${escapeHtml(focusTask.type)}</span>
+          <span class="mini-tag">负责人：${escapeHtml(focusTask.owner)}</span>
         </div>
-        <button class="small-btn primary" type="button" data-task-confirm="${idx}"><i data-lucide="check"></i>确认创建</button>
+        <button class="small-btn primary" type="button" data-task-confirm="${focusIndex}" ${created ? 'disabled' : ''}><i data-lucide="check"></i>${created ? '已完成演示' : '模拟确认创建'}</button>
       </div>
-    `).join('');
+      ${remaining.length ? `
+        <details class="task-more">
+          <summary>另外 ${remaining.length} 项流程待办</summary>
+          <div class="task-more-list">
+            ${remaining.map(task => `<div><span>${escapeHtml(task.name)}</span><b>${escapeHtml(task.status || '待确认')}</b></div>`).join('')}
+          </div>
+        </details>
+      ` : ''}
+    `;
     els.taskList.querySelectorAll('[data-task-confirm]').forEach(btn => {
       btn.addEventListener('click', event => {
         const index = Number(event.currentTarget.dataset.taskConfirm);
         state.tasks[index].status = '已创建';
-        showToast(state.tasks[index].type + ' 已创建：' + state.tasks[index].name);
+        showToast('演示：已确认创建' + state.tasks[index].type + '任务');
         renderTasks();
         createIcons();
       });
@@ -1382,22 +1433,22 @@
     if (!state.reply) {
       els.replyStatus.textContent = '待生成';
       els.replyStatus.className = 'status-tag';
-      els.replyBox.innerHTML = '<div class="empty-copy">字段足够完整后，AI 生成一条由销售或售后确认后发送的回复建议。</div>';
+      els.replyBox.innerHTML = '<div class="empty-copy">AI 生成回复草稿；当前阶段由销售或售后确认，并在企微中人工发送。</div>';
       return;
     }
     const sent = state.sentReplyKey === state.reply.text;
-    els.replyStatus.textContent = sent ? '已发送' : '待确认';
+    els.replyStatus.textContent = sent ? '演示已完成' : '待人工确认';
     els.replyStatus.className = sent ? 'status-tag detected' : 'status-tag draft';
     els.replyBox.innerHTML = `
       <div class="reply-box">
         <div class="reply-text">${escapeHtml(state.reply.text)}</div>
         <div class="reply-actions">
           <span class="mini-tag">发送身份：${escapeHtml(state.reply.by)}</span>
-          <button class="small-btn primary" type="button" id="sendReplyBtn"><i data-lucide="send"></i>${sent ? '再次演示发送' : '确认发送'}</button>
+          <button class="small-btn primary" type="button" id="sendReplyBtn" ${sent ? 'disabled' : ''}><i data-lucide="send"></i>${sent ? '已完成演示' : '模拟人工发送'}</button>
         </div>
       </div>
     `;
-    document.getElementById('sendReplyBtn').addEventListener('click', () => addAiReply(state.reply));
+    if (!sent) document.getElementById('sendReplyBtn').addEventListener('click', () => addAiReply(state.reply));
   }
 
   function addAiReply(reply) {
